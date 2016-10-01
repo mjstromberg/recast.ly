@@ -9,7 +9,7 @@ class App extends React.Component {
   }
 
   componentDidMount () {
-    this.props.searchYouTube({query: 'react', key: YOUTUBE_API_KEY}, function(data) {
+    this.props.searchYouTube({query: 'cats', key: YOUTUBE_API_KEY}, function(data) {
       this.setState({
         videoList: data,
         currentVideo: data[0]
@@ -23,10 +23,19 @@ class App extends React.Component {
     });
   }
 
+  submitHandler (input) {
+    this.props.searchYouTube({query: input, key: YOUTUBE_API_KEY}, function(data) {
+      this.setState({
+        videoList: data,
+        currentVideo: data[0]
+      });
+    }.bind(this));
+  }
+
   render () {
     return (
       <div>
-        <Nav />
+        <Nav submitHandler={this.submitHandler.bind(this)}/>
         <div className="col-md-7">
           <VideoPlayer video={this.state.currentVideo} appState={this.state}/>
         </div>

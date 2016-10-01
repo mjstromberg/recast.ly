@@ -2,6 +2,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
+    this.isCalled = false;
+
     this.state = {
       videoList: exampleVideoData,
       currentVideo: exampleVideoData[0]
@@ -24,12 +26,17 @@ class App extends React.Component {
   }
 
   submitHandler (input) {
-    this.props.searchYouTube({query: input, key: YOUTUBE_API_KEY}, function(data) {
-      this.setState({
-        videoList: data,
-        currentVideo: data[0]
+    if (!this.isCalled) {
+      this.props.searchYouTube({query: input, key: YOUTUBE_API_KEY}, (data) => {
+        this.setState({
+          videoList: data,
+          currentVideo: data[0]
+        });
       });
-    }.bind(this));
+      
+      this.isCalled = true;
+      setTimeout(() => { this.isCalled = false; }, 500);
+    }
   }
 
   render () {

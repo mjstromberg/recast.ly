@@ -45,6 +45,16 @@ body {
   margin-top: 10px;
 }
 
+.video-player-details-published {
+  font-size: 15px;
+  font-weight: bold;
+  padding-top: 20px;
+}
+
+.video-player-details-description {
+  font-size: 15px;
+}
+
 .video-list {
   background: #fff;
   padding: 8px;

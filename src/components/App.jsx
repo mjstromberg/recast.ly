@@ -3,13 +3,12 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      videoList: [],
+      videoList: exampleVideoData,
       currentVideo: exampleVideoData[0]
     };
   }
 
   componentDidMount () {
-    console.log(this);
     this.props.searchYouTube({query: 'react', key: YOUTUBE_API_KEY}, function(data) {
       this.setState({
         videoList: data,
@@ -32,7 +31,7 @@ class App extends React.Component {
           <VideoPlayer video={this.state.currentVideo} appState={this.state}/>
         </div>
         <div className="col-md-5">
-          <VideoList videos={exampleVideoData} appState={this.state} clickHandler={this.clickHandler.bind(this)}/>
+          <VideoList videos={this.state.videoList} appState={this.state} clickHandler={this.clickHandler.bind(this)}/>
         </div>
       </div>
     );

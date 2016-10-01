@@ -3,9 +3,19 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      videoList: exampleVideoData,
+      videoList: [],
       currentVideo: exampleVideoData[0]
     };
+  }
+
+  componentDidMount () {
+    console.log(this);
+    this.props.searchYouTube({query: 'react', key: YOUTUBE_API_KEY}, function(data) {
+      this.setState({
+        videoList: data,
+        currentVideo: data[0]
+      });
+    }.bind(this));
   }
 
   clickHandler (index) {

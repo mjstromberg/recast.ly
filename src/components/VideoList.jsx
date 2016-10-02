@@ -1,7 +1,16 @@
 var VideoList = (props) => (
   <div className="video-list media">
+    <label className="switch">
+      <input type="checkbox"/>
+      <div className="slider round"></div>
+    </label>
+    <div className="video-list-autoplay">Autoplay</div>
     {props.videos.map((video, index) =>
-      <VideoListEntry video={video} clickHandler={props.clickHandler} index={index}/>
+      <VideoListEntry
+        video={video}
+        clickHandler={props.clickHandler}
+        index={index}
+      />
     )}
   </div>
 );

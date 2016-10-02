@@ -1,7 +1,13 @@
 var VideoPlayer = (props) => (
   <div className="video-player">
     <div className="embed-responsive embed-responsive-16by9">
-      <iframe className="embed-responsive-item" src={'https://www.youtube.com/embed/' + props.video.id.videoId} allowFullScreen></iframe>
+      <iframe
+        className="embed-responsive-item"
+        src={'https://www.youtube.com/embed/' + props.video.id.videoId}
+        allowFullScreen
+        onEnded={(event) => { console.log(event); props.handleEndedVideo(props.video, event.data); }}
+      >
+      </iframe>
     </div>
     <div className="video-player-details">
       <VideoDetails video={props.video}/>
